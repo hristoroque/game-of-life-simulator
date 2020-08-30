@@ -1,0 +1,9 @@
+.navbar {
+    background-color: #206a5d;
+    color: white;
+}
+
+.navbar > ul {
+    display: flex;
+    list-style-type: none;
+}
