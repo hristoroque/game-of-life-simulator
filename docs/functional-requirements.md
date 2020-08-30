@@ -6,23 +6,23 @@ In this document I specify the user requirements in form of user stories, I'll d
 
 ## Functional Requirements
 
-- As a user, I want to run the simulation, so that I can see the evolution of my drawing.
+- FR-RUN. As a user, I want to run the simulation, so that I can see the evolution of my drawing.
 
-- As a user, I want to pause my simulation, so that I can see a especific generation in detail.
+- FR-PAUSE. As a user, I want to pause my simulation, so that I can see a especific generation in detail.
 
-- As a user, I want to draw patterns with the mouse or fingers so that I can simulate my own creations.
+- FR-DRAW. As a user, I want to draw patterns with the mouse or fingers so that I can simulate my own creations.
 
-- As a user, I want to create random patterns on the grid to see how it evolves.
+- FR-RANDOM. As a user, I want to create random patterns on the grid to see how it evolves.
 
-- As a user, I want to zoom the grid with the scroll wheel or the fingers.
+- FR-ZOOM. As a user, I want to zoom the grid with the scroll wheel or the fingers.
 
-- As a user, I want to have a lot of patterns (creatures) to drag and drop them in the grid
+- FR-ZOOSELECT. As a user, I want to have a lot of patterns (creatures) to drag and drop them in the grid
 
-- As a user, I want to take a screenshot of the current generation while it is pause, so that I can have it to share
+- FR-PHOTO. As a user, I want to take a screenshot of the current generation while it is pause, so that I can have it to share
 
-- As a user, I want to be able to share my pattern in twitter, so that my followers could see it.
+- FR-SHARETWITTER. As a user, I want to be able to share my pattern in twitter, so that my followers could see it.
 
-- As a user, I want to be able to share my patter in facebook, so that my friends could see it.
+- FR-SHAREFACEBOOK. As a user, I want to be able to share my patter in facebook, so that my friends could see it.
 
 ## Non functional Requirements
 
