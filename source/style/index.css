@@ -54,3 +54,30 @@ body{
     left: 0;
     width: 100%;
 }
+
+.btn{
+    padding: 0.5em 1.5em;
+    border-radius: 10px;
+    background-color: #81B214;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:link{
+    text-decoration: none;
+}
+
+.btn:visited{
+    color: white;
+    text-decoration: none;
+}
+
+.btn:hover{
+    background-color: #BFDCAE;
+}
+
+.btn:active{
+    background-color: #206A5D;
+}
