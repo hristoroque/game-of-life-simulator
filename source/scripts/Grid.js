@@ -9,6 +9,10 @@ class Grid{
         return this.array2d[x*this.rows + y]
     }
 
+    setAt(x,y, value){
+        this.array2d[x*this.rows + y] = value
+    }
+
     copy(){
         let grid = new Grid(this.cols, this.rows)
         grid.array2d = [...this.array2d]

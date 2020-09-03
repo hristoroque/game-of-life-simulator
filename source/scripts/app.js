@@ -5,9 +5,14 @@ main()
 function main(){
     const canvas = document.querySelector('#grid')
     const ctx = canvas.getContext('2d')
-    canvas.requestFullscreen();
+    const canvasConf = {
+        cols: 30,
+        rows: 30,
+        size: canvas.width,
+        cellSize: canvas.width / 30
+    }
 
-    const grid = new Grid(20,20)
+    const grid = new Grid(canvasConf.rows, canvasConf.cols)
 
     drawGrid({
         width: canvas.width,
@@ -19,69 +24,65 @@ function main(){
     let x = -1
     let y = -1
 
-    let isPaused = true
+    let isRunning = true
+    let isDrawing = false
     let scale = 1
     let deltaScale = 1
 
     canvas.addEventListener('mousedown',()=>{
-        isPaused = false
-    })
-
-    canvas.addEventListener('touchstart',()=>{
-        isPaused = false
-    })
-
-    canvas.addEventListener('touchend',()=>{
-        isPaused = true
-    })
-
-    canvas.addEventListener('wheel',(e)=>{
-        scale += event.deltaY * -0.01;
+        isRunning = false
+        isDrawing = true
     })
 
     canvas.addEventListener('mouseup',()=>{
-        isPaused = true
+        isRunning = true
+        isDrawing = false
     })
 
-    canvas.addEventListener('mousemove',(e)=>{
-        e.preventDefault()
+    canvas.addEventListener('mousemove', (e)=>{
         const rect = canvas.getBoundingClientRect()
-        x = e.clientX - rect.left;
-        y = e.clientY - rect.top;
-    })
-
-    canvas.addEventListener('touchmove',e=>{
-        const rect = canvas.getBoundingClientRect()
-
-        for(let touch of e.changedTouches){
-            x = touch.clientX - rect.left
-            y = touch.clientY - rect.top
+        if(isDrawing){
+            x = e.clientX - rect.left;
+            y = e.clientY - rect.top;
         }
     })
 
     const loop = ()=>{
         window.requestAnimationFrame(loop)
 
-        /*if(scale !== deltaScale){
-            scaleFunc(ctx, scale)
-            deltaScale = scale
-        }*/
-
         ctx.clearRect(0,0,canvas.width, canvas.height)
 
-        if(!isPaused){
-            drawCell(canvas, 20, 20, ctx, x, y)
+        if(isDrawing){
+            let i = (x - x%canvasConf.cellSize)/canvasConf.cellSize
+            let j = (y - y%canvasConf.cellSize)/canvasConf.cellSize
+
+            console.log(`${i} y ${j}`)
+            grid.setAt(i,j,1)
         }
 
+        
+        drawCells(ctx, grid, canvasConf)
         drawGrid({
             width: canvas.width,
             height: canvas.height,
-            rows: 20,
-            cols: 20
+            rows: 30,
+            cols: 30
         }, ctx)
     }
 
     window.requestAnimationFrame(loop)
+}
+
+function drawCells(ctx, grid, canvasConf){
+    const size = canvasConf.cellSize
+
+    for(let i = 0; i < grid.rows; i++){
+        for(let j = 0; j < grid.cols; j++){
+            if(grid.at(i,j) === 1){
+                ctx.fillRect(i*size,j*size,size,size)
+            }
+        }
+    }
 }
 
 function drawCell(canvas, rows, cols, ctx, x, y){
